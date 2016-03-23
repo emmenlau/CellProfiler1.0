@@ -101,7 +101,7 @@ drawnow
 
 % The first time the module is run, the threshold shifting value must be
 % calculated.
-if handles.Current.SetBeingAnalyzed == 1
+if (handles.Current.SetBeingAnalyzed == handles.Current.StartingImageSet)
     CPwarndlg(['The functionality performed by ', ModuleName, ' can be performed by CorrectIllumination_Calculate and CorrectIllumination_Apply. You may want to consider using those modules instead.'],'Obsolete module','replace');
     try
         drawnow

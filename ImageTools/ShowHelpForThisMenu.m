@@ -93,7 +93,7 @@ end
 % Get screen parameters and set window size, font and color
 ScreenResolution = get(0,'ScreenPixelsPerInch');
 FontSize = (220 - ScreenResolution)/13;
-Color = [0.7 .7 .9];
+Color = CPBackgroundColor();
 
 MainWinPos = get(gcf,'Position');
 

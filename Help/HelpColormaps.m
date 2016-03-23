@@ -32,7 +32,7 @@ helpFig = CPfigure;
 set(helpFig,'Resize','off');
 set(helpFig,'NumberTitle','off');
 set(helpFig,'name', Title);
-set(helpFig,'units','characters','color',[0.7 0.7 0.9]);
+set(helpFig,'units','characters','color',CPBackgroundColor());
 helpFigPos = get(helpFig,'position');
 %set(helpFig,'position',[helpFigPos(1),helpFigPos(2),87,helpFigPos(4)]);
 

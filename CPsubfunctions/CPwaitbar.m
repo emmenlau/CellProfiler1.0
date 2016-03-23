@@ -15,7 +15,7 @@ fout = waitbar(varargin{:});
 userData.Application = 'CellProfiler';
 userData.ImageFlag = 0;
 if is2008b_or_greater, userData.FractionInput = get(fout,'userdata'); end
-set(fout, 'Color', [0.7 0.7 0.9], 'UserData',userData);
+set(fout, 'Color', CPBackgroundColor(), 'UserData',userData);
 
 ax = get(fout, 'Children');
 ttl = get(ax, 'Title');

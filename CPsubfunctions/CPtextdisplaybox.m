@@ -11,7 +11,7 @@ helpFig = CPfigure;
 set(helpFig,'Resize','off');
 set(helpFig,'NumberTitle','off');
 set(helpFig,'name', title);
-set(helpFig,'units','characters','color',[0.7 0.7 0.9], 'menubar', 'none');
+set(helpFig,'units','characters','color',CPBackgroundColor(), 'menubar', 'none');
 helpFigPos = get(helpFig,'position');
 %set(helpFig,'position',[helpFigPos(1),helpFigPos(2),87,helpFigPos(4)]);
 

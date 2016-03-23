@@ -94,7 +94,7 @@ if nargin>0 && isfield(varargin{1},'Pipeline')
         end
     end
     set(FigHandle,'UserData',userData);
-    set(FigHandle,'Color',[0.7 0.7 0.9]);
+    set(FigHandle,'Color',CPBackgroundColor());
     colormap(userData.MyHandles.Preferences.IntensityColorMap);
 else
     %%% CPfigure with no arguments just sets the figure to be the
@@ -108,5 +108,5 @@ else
             set(FigHandle,'UserData',userData);
         end
     end
-    set(FigHandle,'Color',[0.7 0.7 0.9],'BackingStore','off');
+    set(FigHandle,'Color',CPBackgroundColor(),'BackingStore','off');
 end

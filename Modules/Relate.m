@@ -205,8 +205,8 @@ if wantDistancesCalculated
 
                         % Get location of each child object
                         ChList = find(ParentsOfChildren == iParentsOfChildren);
-                        ChildrenLocationsX = handles.Measurements.(SubObjectName).Location_Center_X{handles.Current.SetBeingAnalyzed}(ChList,:);
-                        ChildrenLocationsY = handles.Measurements.(SubObjectName).Location_Center_Y{handles.Current.SetBeingAnalyzed}(ChList,:);
+                        ChildrenLocationsX = double(handles.Measurements.(SubObjectName).Location_Center_X{handles.Current.SetBeingAnalyzed}(ChList,:));
+                        ChildrenLocationsY = double(handles.Measurements.(SubObjectName).Location_Center_Y{handles.Current.SetBeingAnalyzed}(ChList,:));
                         roundedChLocX = round(ChildrenLocationsX);
                         roundedChLocY= round(ChildrenLocationsY);
                         idx = sub2ind(size(DistTrans),roundedChLocY(:,1), roundedChLocX(:,1));
@@ -220,10 +220,10 @@ if wantDistancesCalculated
                     Dists = zeros(max(SubObjectLabelMatrix(:)), 1);
                     for iParentsOfChildren = 1:max(ParentsOfChildren)
                         ChList = find(ParentsOfChildren == iParentsOfChildren);
-                        ChildrenLocationsX = handles.Measurements.(SubObjectName).Location_Center_X{handles.Current.SetBeingAnalyzed}(ChList,:);
-                        ChildrenLocationsY = handles.Measurements.(SubObjectName).Location_Center_Y{handles.Current.SetBeingAnalyzed}(ChList,:);
-                        ParentLocationsX = handles.Measurements.(thisParent{1}).Location_Center_X{handles.Current.SetBeingAnalyzed}(iParentsOfChildren,:);
-                        ParentLocationsY = handles.Measurements.(thisParent{1}).Location_Center_Y{handles.Current.SetBeingAnalyzed}(iParentsOfChildren,:);
+                        ChildrenLocationsX = double(handles.Measurements.(SubObjectName).Location_Center_X{handles.Current.SetBeingAnalyzed}(ChList,:));
+                        ChildrenLocationsY = double(handles.Measurements.(SubObjectName).Location_Center_Y{handles.Current.SetBeingAnalyzed}(ChList,:));
+                        ParentLocationsX = double(handles.Measurements.(thisParent{1}).Location_Center_X{handles.Current.SetBeingAnalyzed}(iParentsOfChildren,:));
+                        ParentLocationsY = double(handles.Measurements.(thisParent{1}).Location_Center_Y{handles.Current.SetBeingAnalyzed}(iParentsOfChildren,:));
                         ParentLocationsX = repmat(ParentLocationsX,[length(ChildrenLocationsX) 1]);
                         ParentLocationsY = repmat(ParentLocationsY,[length(ChildrenLocationsY) 1]);
                         Dists(ChList) = sqrt((ChildrenLocationsX - ParentLocationsX).^2 + (ChildrenLocationsY - ParentLocationsY).^2);
@@ -248,8 +248,8 @@ if wantDistancesCalculated
     if length(ParentName) > 1
         NormDistancePrefix = 'NormDistance';
         if wantCenteredDistances
-            FirstParentDist =   handles.Measurements.(SubObjectName).(CPjoinstrings(NormDistancePrefix,'Centroid',thisParent{1})){handles.Current.SetBeingAnalyzed};
-            OtherObjDist =      handles.Measurements.(SubObjectName).(CPjoinstrings(NormDistancePrefix,'Centroid',thisParent{2})){handles.Current.SetBeingAnalyzed};
+            FirstParentDist =   double(handles.Measurements.(SubObjectName).(CPjoinstrings(NormDistancePrefix,'Centroid',thisParent{1})){handles.Current.SetBeingAnalyzed});
+            OtherObjDist =      double(handles.Measurements.(SubObjectName).(CPjoinstrings(NormDistancePrefix,'Centroid',thisParent{2})){handles.Current.SetBeingAnalyzed});
             NormDist = FirstParentDist ./ sum([FirstParentDist OtherObjDist],2);
             NormDist(isnan(NormDist)) = 0;  %% In case sum(Dist,2) == 0 for any reason (no parents/child, or child touching either parent)
 
@@ -257,8 +257,8 @@ if wantDistancesCalculated
             handles = CPaddmeasurements(handles,SubObjectName, CPjoinstrings(NormDistancePrefix,'Centroid',ParentName{1}),NormDist);
         end
         if wantMinimumDistances
-            FirstParentDist =   handles.Measurements.(SubObjectName).(CPjoinstrings(NormDistancePrefix,'Minimum',thisParent{1})){handles.Current.SetBeingAnalyzed};
-            OtherObjDist =      handles.Measurements.(SubObjectName).(CPjoinstrings(NormDistancePrefix,'Minimum',thisParent{2})){handles.Current.SetBeingAnalyzed};
+            FirstParentDist =   double(handles.Measurements.(SubObjectName).(CPjoinstrings(NormDistancePrefix,'Minimum',thisParent{1})){handles.Current.SetBeingAnalyzed});
+            OtherObjDist =      double(handles.Measurements.(SubObjectName).(CPjoinstrings(NormDistancePrefix,'Minimum',thisParent{2})){handles.Current.SetBeingAnalyzed});
             NormDist = FirstParentDist ./ sum([FirstParentDist OtherObjDist],2);
             NormDist(isnan(NormDist)) = 0;  %% In case sum(Dist,2) == 0 for any reason (no parents/child, or child touching either parent)
 
@@ -291,7 +291,7 @@ if wantMeanMeasurements
                                                     num2cell(cellfun(@length,ExcludedMeasurementsPrefixes)),'UniformOutput',false)))
                     continue;
                 end
-                Measurements = handles.Measurements.(SubObjectName).(Fieldname){handles.Current.SetBeingAnalyzed};
+                Measurements = double(handles.Measurements.(SubObjectName).(Fieldname){handles.Current.SetBeingAnalyzed});
                 MeanVals = zeros(max(Parents), 1);
                 if max(Parents) > 0
                     for j = 1:max(Parents),

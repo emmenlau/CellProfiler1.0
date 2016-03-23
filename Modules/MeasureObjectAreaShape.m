@@ -260,8 +260,8 @@ for i = 1:length(ObjectNameList)
     BasicFeatures = {'Area', 'Eccentricity', 'Solidity', 'Extent', ...
         'EulerNumber', 'Perimeter', 'FormFactor',...
         'MajorAxisLength', 'MinorAxisLength', 'Orientation'};
-    if  NumObjects > 0
 
+    if  NumObjects > 0
         %%% Get the basic shape features, excluding FormFactor
         warning('off', 'MATLAB:divideByZero'); %%% Matlab failing atan vs atan2 in regionprops line 672.
         props = regionprops(LabelMatrixImage, BasicFeatures(~strcmp(BasicFeatures,'FormFactor')));

@@ -22,7 +22,6 @@ function reactToImageChangesInFig(varargin)
 %   See also IMPIXELINFOPANEL,IMPIXELINFOVAL.
 
 %   Copyright 1993-2004 The MathWorks, Inc.
-%   $Revision$  $Date$
 
 [hImage,deleteFcn,recreateFcn] = parseInputs(varargin{:});
 
